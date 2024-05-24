@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Crypto Portfolio</h1>
+    <table id="portfolio-table" class="table">
+        <thead>
+            <tr>
+                <th>Ticker</th>
+                <th>Balance</th>
+                <th>Cost</th>
+                <th>Value</th>
+                <th>24H Change</th>
+            </tr>
+        </thead>
+        <tbody id="portfolio-data">
+            {% for item in portfolio %}
+            <tr>
+                <td>{{ item.ticker }}</td>
+                <td>{{ item.balance }}</td>
+                <td>{{ item.cost }}</td>
+                <td>{{ item.value }}</td>
+                <td>{{ item.change_24h }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
