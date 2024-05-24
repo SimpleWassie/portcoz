@@ -37,6 +37,7 @@ def index():
     tickers = [item['ticker'] for item in portfolio_data]
     prices = get_crypto_prices(tickers)
     
+    total_value = 0
     for item in portfolio_data:
         ticker = item['ticker']
         if ticker in prices:
@@ -44,6 +45,7 @@ def index():
             item['value'] = item['balance'] * item['price']
             item['change_1h'] = prices[ticker].get('usd_1h_change', 'N/A')
             item['change_24h'] = prices[ticker].get('usd_24h_change', 'N/A')
+            total_value += item['value']
         else:
             item['price'] = item['value'] = item['change_1h'] = item['change_24h'] = 'N/A'
 
@@ -53,7 +55,7 @@ def index():
         if item['change_24h'] != 'N/A':
             item['change_24h'] = f"{item['change_24h']:.2f}%"
 
-    return render_template('index.html', portfolio=portfolio_data)
+    return render_template('index.html', portfolio=portfolio_data, total_value=total_value)
 
 if __name__ == '__main__':
     app.run(debug=True)

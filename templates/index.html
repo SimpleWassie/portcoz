@@ -28,6 +28,16 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <h2>Total Value</h2>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>{{ "{:,.2f}".format(total_value) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
